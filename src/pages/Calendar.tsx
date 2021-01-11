@@ -1,11 +1,7 @@
 import React, { useState } from "react"
+import { subMonths, addMonths, format } from "date-fns"
 
 import { generate, dateToLink } from "../utils"
-
-import format from "date-fns/format"
-import { subMonths, addMonths } from "date-fns"
-
-
 import DayLink from '../components/DayLink'
 
 const Calendar: React.FC = () => {
@@ -22,12 +18,12 @@ const Calendar: React.FC = () => {
 
     return (
         <>
-            <div className="calendar-header">
+            <div>
                 <button onClick={prevMonth}>l</button>
-                {format(month, "LLLL u")}
+                {format(month, "LLLL y")}
                 <button onClick={nextMonth}>r</button>
             </div>
-            <div className="calendar-content">
+            <div>
                 {calendarList.map(day => {
                     let date_string = dateToLink(day)
                     return (
