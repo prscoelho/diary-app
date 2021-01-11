@@ -3,7 +3,7 @@ import {
     createReducer,
 } from "@reduxjs/toolkit"
 
-import { createEntry, deleteEntry } from "./shared_actions"
+import { createEntry, deleteEntry } from "./entry"
 
 type Day = {
     date: string,

@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { createEntry } from '../redux/shared_actions'
-import { Entry } from '../redux/types'
+import { createEntry, Entry } from '../redux/entry'
 import { nanoid } from 'nanoid'
 
 interface CreateEntryProps {

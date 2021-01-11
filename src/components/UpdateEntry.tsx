@@ -3,10 +3,8 @@ import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { entrySelectors } from '../redux/selectors'
 import { RootState } from '../redux/rootReducer'
-import { updateEntry } from '../redux/entry'
-import { Entry } from '../redux/types'
+import { Entry, updateEntry, deleteEntry, EntryDeleted } from '../redux/entry'
 import { Update } from '@reduxjs/toolkit'
-import { deleteEntry, EntryDeleted } from '../redux/shared_actions'
 
 interface UpdateEntryProps {
     entry_id: string
@@ -24,6 +22,7 @@ const UpdateEntry: React.FC<UpdateEntryProps> = props => {
     // this case should not happen since we're in UpdateEntry,
     // however entrySelectors.selectById returns Entry | undefined
     // we know that our id will be in the store but typescript doesn't
+    // it's only possible if someone types a random date into the url bar
     if (typeof entry === "undefined") {
         return <div>Entry not found...</div>
     }
