@@ -61,14 +61,16 @@ const UpdateEntry: React.FC<UpdateEntryProps> = props => {
     }
 
     return (
-        <div>
+        <div className="flex-row space-y-4">
             <div>Title</div>
-            <input value={title} onChange={handleTitleChange} placeholder="Add a title" />
+            <input type="text" className="w-full" value={title} onChange={handleTitleChange} placeholder="Add a title" />
             <div>Entry</div>
-            <textarea onChange={handleContentChange} placeholder="Write something.." value={content}>
+            <textarea className="w-full h-96 resize-none" onChange={handleContentChange} placeholder="Write something.." value={content}>
             </textarea>
-            <button disabled={title === "" || content === ""} onClick={handleSubmit}>Update</button>
-            <button onClick={handleDelete}>Delete</button>
+            <div className="flex justify-center space-x-4">
+                <button className="disabled:opacity-50 bg-indigo-700 rounded text-white w-24" disabled={title === "" || content === ""} onClick={handleSubmit}>Update</button>
+                <button className="rounded border-2 border-indigo-500 text-indigo-500 w-24" onClick={handleDelete}>Delete</button>
+            </div>
         </div>
     )
 }

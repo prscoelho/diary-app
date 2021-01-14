@@ -41,11 +41,13 @@ const CreateEntry: React.FC<CreateEntryProps> = props => {
     return (
         <div>
             <div>Title</div>
-            <input value={title} onChange={handleTitleChange} placeholder="Add a title" />
+            <input type="text" className="w-full" value={title} onChange={handleTitleChange} placeholder="Add a title" />
             <div>Entry</div>
-            <textarea onChange={handleContentChange} placeholder="Write something.." value={content}>
+            <textarea className="w-full resize-none h-80" onChange={handleContentChange} placeholder="Write something.." value={content}>
             </textarea>
-            <button disabled={title === "" || content === ""} onClick={handleSubmit}>Create</button>
+            <div className="flex justify-center">
+                <button className="disabled:opacity-30 bg-indigo-500 rounded text-white w-24" disabled={title === "" || content === ""} onClick={handleSubmit}>Create</button>
+            </div>
         </div>
     )
 }
