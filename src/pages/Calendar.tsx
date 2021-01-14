@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { subMonths, addMonths, format, isSameMonth } from "date-fns"
 
 import { generate, dateToLink } from "../utils"
-import DayLink from '../components/DayLink'
+import CalendarButton from '../components/CalendarButton'
 
 const Calendar: React.FC = () => {
     const [month, setMonth] = useState(() => new Date(Date.now()))
@@ -31,7 +31,7 @@ const Calendar: React.FC = () => {
                 {calendarList.map(day => {
                     let date_string = dateToLink(day)
                     return (
-                        <DayLink
+                        <CalendarButton
                             key={date_string}
                             same_month={isSameMonth(day, month)}
                             day={day}
