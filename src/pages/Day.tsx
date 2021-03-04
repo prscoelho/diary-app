@@ -7,17 +7,15 @@ import { ParamTypes } from '../types'
 import { daySelectors } from '../redux/selectors'
 import { RootState } from '../redux/rootReducer'
 import Entry from '../components/Entry'
+import Header from '../components/Header'
+import HeaderButton from '../components/HeaderButton'
 
 const Day: React.FC = () => {
     const { date } = useParams<ParamTypes>()
     const ids = useSelector((state: RootState) => daySelectors.selectById(state, date))?.entries
 
     return (<div>
-        <div className="flex py-8 justify-between">
-            <Link to="/" className="hover:bg-gray-100 px-4 py-2 rounded text-1xl font-semibold">&lt;</Link>
-            <div className="text-center text-gray-500 text-1xl font-semibold">Diary</div>
-            <div className="px-4"></div>
-        </div>
+        <Header side="left" name="Diary" link={<HeaderButton to="/" text="&lt;" />} />
         <div className="text-gray-500 text-sm">{linkToText(date)}</div>
         <div className="py-4 flex-row space-y-12">{typeof ids !== "undefined" ? ids.map((id) =>
             <Entry key={id} entry_id={id} />

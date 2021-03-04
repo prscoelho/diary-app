@@ -3,6 +3,8 @@ import { subMonths, addMonths, format, isSameMonth } from "date-fns"
 
 import { generate, dateToLink } from "../utils"
 import CalendarButton from '../components/CalendarButton'
+import RecentList from "../components/RecentList"
+import Header from "../components/Header"
 
 const Calendar: React.FC = () => {
     const [month, setMonth] = useState(() => new Date(Date.now()))
@@ -18,7 +20,8 @@ const Calendar: React.FC = () => {
     let days = ['M', 'T', 'W', 'T', 'F', 'S', 'S']
     return (
         <div>
-            <div className="text-center text-gray-500 text-1xl py-8 font-semibold">Calendar</div>
+            <Header side="none" name="Calendar" />
+            {/* <div className="text-center text-gray-500 text-1xl py-8 font-semibold">Calendar</div> */}
             <div className="grid grid-cols-7 gap-4 text-2xl font-bold pb-6">
                 <button className="text-indigo-400 text-center w-10 hover:bg-gray-100 rounded" onClick={prevMonth}>&lt;</button>
                 <span className="col-span-5 text-center">{format(month, "LLLL y")}</span>
@@ -39,6 +42,10 @@ const Calendar: React.FC = () => {
                         />
                     )
                 })}
+            </div>
+            <div className="pt-12">
+                <div className="font-bold text-xl pb-4">Recent entries</div>
+                <RecentList />
             </div>
         </div>
     )

@@ -74,12 +74,12 @@ const EntryForm: React.FC<EntryFormProps> = props => {
     return (
         <form className="flex-row space-y-8">
             <div>
-                <div>Title</div>
-                <input type="text" className="w-full" value={title} onChange={handleTitleChange} placeholder="Add a title" />
+                <div className="pb-1">Title</div>
+                <input type="text" className="w-full focus:outline-none border bg-gray-50 focus:ring  p-2 rounded" value={title} onChange={handleTitleChange} placeholder="Add a title" />
             </div>
             <div>
-                <div>Entry</div>
-                <textarea className="w-full h-96 resize-none" onChange={handleContentChange} placeholder="Write something.." value={content}>
+                <div className="pb-1">Entry</div>
+                <textarea className="w-full border bg-gray-50 h-96 focus:ring focus:outline-none resize-none p-2 rounded" onChange={handleContentChange} placeholder="Write something.." value={content}>
                 </textarea>
             </div>
             <div className="flex justify-center space-x-4">

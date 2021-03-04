@@ -16,11 +16,9 @@ export type EntryDeleted = {
     date_id: string
 }
 
-const deleteEntry = createAction<EntryDeleted>("entries/delete")
+const deleteEntry = createAction<EntryDeleted>("entries/deleteEntry")
 
-export const entryAdapter = createEntityAdapter<Entry>({
-    sortComparer: (a, b) => a.id.localeCompare(b.id),
-})
+export const entryAdapter = createEntityAdapter<Entry>()
 
 
 const entriesSlice = createSlice({
