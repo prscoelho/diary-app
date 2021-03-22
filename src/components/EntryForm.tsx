@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { entrySelectors } from '../redux/selectors'
 import { RootState } from '../redux/rootReducer'
-import { Entry, updateEntry, deleteEntry, EntryDeleted, createEntry } from '../redux/entry'
+import { Entry, updateEntry, createEntry } from '../redux/entry'
 import { nanoid, Update } from '@reduxjs/toolkit'
 
 interface EntryFormProps {
@@ -61,16 +61,6 @@ const EntryForm: React.FC<EntryFormProps> = props => {
         history.push(`/day/${date}`)
     }
 
-    const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
-        e.preventDefault()
-        const deleted: EntryDeleted = {
-            id: entry_id,
-            date_id: date
-        }
-        dispatch(deleteEntry(deleted))
-        history.push(`/day/${date}`)
-    }
-
     return (
         <form className="flex-row space-y-8">
             <div>
@@ -84,7 +74,6 @@ const EntryForm: React.FC<EntryFormProps> = props => {
             </div>
             <div className="flex justify-center space-x-4">
                 <button className="disabled:opacity-50 bg-indigo-700 rounded text-white w-24" disabled={title === "" || content === ""} onClick={handleSubmit}>{new_entry ? "Create" : "Update"}</button>
-                {!new_entry ? <button className="rounded border-2 border-indigo-500 text-indigo-500 w-24" onClick={handleDelete}>Delete</button> : null}
             </div>
         </form>
     )
