@@ -20,7 +20,9 @@
     "jsx": "react-jsx",
     "noFallthroughCasesInSwitch": true,
     "types": [
-      "webpack-env"
+      "webpack-env",
+      "jest",
+      "node"
     ]
   },
   "include": [
