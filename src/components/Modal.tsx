@@ -2,32 +2,28 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 import { Transition } from '@headlessui/react'
-import { useDispatch } from 'react-redux'
-import { deleteEntry, EntryDeleted } from '../redux/entry'
 
 interface ModalProps {
     open: boolean,
     setOpen: Function
-    entry_id: string
-    date_id: string
+    deleteEntry: Function
 }
 
-const Modal: React.FC<ModalProps> = ({ open, setOpen, entry_id, date_id }) => {
-    const container = document.getElementById("modal-root")
-    const dispatch = useDispatch()
+const modalRoot = document.createElement('div')
+modalRoot.setAttribute('id', 'modal-root')
+document.body.appendChild(modalRoot)
 
-    const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
-        e.preventDefault()
-        const deleted: EntryDeleted = {
-            id: entry_id,
-            date_id: date_id
-        }
-        dispatch(deleteEntry(deleted))
-        setOpen(false)
-    }
+const Modal: React.FC<ModalProps> = ({ open, setOpen, deleteEntry }) => {
+    const container = document.getElementById("modal-root")
 
     if (!container) {
         return null
+    }
+
+    const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault()
+        deleteEntry()
+        setOpen(false)
     }
 
     return ReactDOM.createPortal(

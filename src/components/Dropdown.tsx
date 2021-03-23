@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 
 import { Menu, Transition } from "@headlessui/react";
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux'
+import { deleteEntry, EntryDeleted } from '../redux/entry'
 import Modal from './Modal';
 
 interface DropdownProps {
@@ -11,6 +13,15 @@ interface DropdownProps {
 
 const Dropdown: React.FC<DropdownProps> = ({ entry_id, date_id }) => {
     const [modal, setModal] = useState(false)
+    const dispatch = useDispatch()
+
+    const handleDelete = () => {
+        const deleted: EntryDeleted = {
+            id: entry_id,
+            date_id: date_id
+        }
+        dispatch(deleteEntry(deleted))
+    }
 
     return (
         <Menu as="div" className="relative inline-block text-left">
@@ -42,7 +53,7 @@ const Dropdown: React.FC<DropdownProps> = ({ entry_id, date_id }) => {
                             </Menu.Item>
                         </Menu.Items>
                     </Transition>
-                    <Modal open={modal} setOpen={setModal} entry_id={entry_id} date_id={date_id} />
+                    <Modal open={modal} setOpen={setModal} deleteEntry={handleDelete} />
                 </>
             )
             }
