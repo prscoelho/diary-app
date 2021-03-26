@@ -23,6 +23,7 @@ const Dropdown: React.FC<DropdownProps> = ({ entry_id, date_id }) => {
         dispatch(deleteEntry(deleted))
     }
 
+    // the styling for this component was adapted from `https://tailwindui.com/components/application-ui/elements/dropdowns`
     return (
         <Menu as="div" className="relative inline-block text-left">
             {({ open }) => (

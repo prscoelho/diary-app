@@ -26,6 +26,7 @@ const Modal: React.FC<ModalProps> = ({ open, setOpen, deleteEntry }) => {
         setOpen(false)
     }
 
+    // the styling for this component was adapted from `https://tailwindui.com/components/application-ui/overlays/modals`
     return ReactDOM.createPortal(
         <Transition show={open}>
             <div className="fixed z-10 inset-0 overflow-y-auto">
