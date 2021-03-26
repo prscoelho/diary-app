@@ -54,7 +54,7 @@ const Dropdown: React.FC<DropdownProps> = ({ entry_id, date_id }) => {
                             </Menu.Item>
                         </Menu.Items>
                     </Transition>
-                    <Modal open={modal} setOpen={setModal} deleteEntry={handleDelete} />
+                    <Modal open={modal} closeModal={() => setModal(false)} deleteEntry={handleDelete} />
                 </>
             )
             }

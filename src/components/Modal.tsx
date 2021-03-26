@@ -5,7 +5,7 @@ import { Transition } from '@headlessui/react'
 
 interface ModalProps {
     open: boolean,
-    setOpen: Function
+    closeModal: Function
     deleteEntry: Function
 }
 
@@ -13,17 +13,11 @@ const modalRoot = document.createElement('div')
 modalRoot.setAttribute('id', 'modal-root')
 document.body.appendChild(modalRoot)
 
-const Modal: React.FC<ModalProps> = ({ open, setOpen, deleteEntry }) => {
-    const container = document.getElementById("modal-root")
-
-    if (!container) {
-        return null
-    }
-
+const Modal: React.FC<ModalProps> = ({ open, closeModal, deleteEntry }) => {
     const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
         deleteEntry()
-        setOpen(false)
+        closeModal()
     }
 
     // the styling for this component was adapted from `https://tailwindui.com/components/application-ui/overlays/modals`
@@ -90,7 +84,7 @@ const Modal: React.FC<ModalProps> = ({ open, setOpen, deleteEntry }) => {
                             <button onClick={handleDelete} type="button" className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
                                 Delete
                         </button>
-                            <button onClick={() => setOpen(false)} type="button" className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                            <button onClick={() => closeModal()} type="button" className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
                                 Cancel
                         </button>
                         </div>
@@ -98,7 +92,7 @@ const Modal: React.FC<ModalProps> = ({ open, setOpen, deleteEntry }) => {
                 </div>
             </div>
         </Transition>
-        , container)
+        , modalRoot)
 }
 
 export default Modal
