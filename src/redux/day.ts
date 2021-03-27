@@ -5,9 +5,9 @@ import {
 
 import { createEntry, deleteEntry } from "./entry"
 
-type Day = {
+export type Day = {
     date: string,
-    entries: [string]
+    entries: string[]
 }
 
 export const dayAdapter = createEntityAdapter<Day>({

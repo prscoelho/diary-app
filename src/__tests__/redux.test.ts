@@ -1,4 +1,4 @@
-import dayReducer from '../redux/day'
+import dayReducer, { dayAdapter, Day } from '../redux/day'
 import { createEntry, deleteEntry, Entry, EntryDeleted } from '../redux/entry'
 
 // There is no point in testing the entry reducer, it's only calling the entity Adapter from redux-toolkit
@@ -11,16 +11,14 @@ describe('day reducer', () => {
             title: 'This is the title',
             content: 'This is the content? Wow.'
         }
-        expect(dayReducer(undefined, createEntry(e))).toEqual(
-            {
-                ids: ['2021-03-22'],
-                entities: {
-                    [e.date_id]: {
-                        date: e.date_id,
-                        entries: ['1']
-                    }
-                }
-            })
+        const nextState = dayReducer(undefined, createEntry(e))
+        const selectors = dayAdapter.getSelectors()
+        const expectedDay: Day = {
+            date: '2021-03-22',
+            entries: ['1']
+        }
+        // there should only be one day in the state, containing one entry
+        expect(selectors.selectAll(nextState)).toEqual([expectedDay])
     })
     it('should add entry id to day if day already exists', () => {
         const first: Entry = {
@@ -38,16 +36,14 @@ describe('day reducer', () => {
             content: 'More content.'
         }
 
-        expect(dayReducer(initialState, createEntry(second))).toEqual(
-            {
-                ids: ['2021-03-22'],
-                entities: {
-                    [first.date_id]: {
-                        date: first.date_id,
-                        entries: ['1', '2']
-                    }
-                }
-            })
+        const nextState = dayReducer(initialState, createEntry(second))
+        const selectors = dayAdapter.getSelectors()
+        const expectedDay: Day = {
+            date: '2021-03-22',
+            entries: ['1', '2']
+        }
+        // there should only be one day in the state, containing two entries
+        expect(selectors.selectAll(nextState)).toEqual([expectedDay])
     })
     it('should not remove day on deleteEntry if day still has entries', () => {
         const first: Entry = {
@@ -71,16 +67,14 @@ describe('day reducer', () => {
             date_id: first.date_id
         }
 
-        expect(dayReducer(initialState, deleteEntry(entryToDelete))).toEqual(
-            {
-                ids: ['2021-03-22'],
-                entities: {
-                    [first.date_id]: {
-                        date: first.date_id,
-                        entries: [second.id]
-                    }
-                }
-            })
+        const nextState = dayReducer(initialState, deleteEntry(entryToDelete))
+        const selectors = dayAdapter.getSelectors()
+        const expectedDay: Day = {
+            date: '2021-03-22',
+            entries: ['2']
+        }
+        // should have removed entry 1
+        expect(selectors.selectAll(nextState)).toEqual([expectedDay])
     })
 
     it('should remove day on deleteEntry if it\'s the last entry of that day', () => {
@@ -98,10 +92,10 @@ describe('day reducer', () => {
             date_id: first.date_id
         }
 
-        expect(dayReducer(initialState, deleteEntry(entryToDelete))).toEqual(
-            {
-                ids: [],
-                entities: {}
-            })
+        const nextState = dayReducer(initialState, deleteEntry(entryToDelete))
+        const selectors = dayAdapter.getSelectors()
+
+        // there should be no day in state
+        expect(selectors.selectAll(nextState)).toEqual([])
     })
 })
