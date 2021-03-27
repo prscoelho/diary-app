@@ -14,10 +14,13 @@ const Calendar: React.FC = () => {
     const nextMonth = () => {
         setMonth(curr => addMonths(curr, 1))
     }
+
     const prevMonth = () => {
         setMonth(curr => subMonths(curr, 1))
     }
-    let days = ['M', 'T', 'W', 'T', 'F', 'S', 'S']
+
+    let days = ['S', 'M', 'T', 'W', 'T', 'F', 'S']
+
     return (
         <div>
             <Header side="none" name="Calendar" />
