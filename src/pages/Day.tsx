@@ -22,7 +22,7 @@ const Day: React.FC = () => {
         ) :
             <p>No entries...</p>}</div>
         <div className="flex justify-center">
-            <Link to={`/entry/${date}`} className="rounded-full h-12 w-12 flex items-center justify-center bg-indigo-500 text-white text-2xl">+</Link>
+            <Link to={`/entry/${date}`} className="rounded-full h-12 w-12 flex items-center justify-center bg-indigo-500 text-white text-2xl" aria-label="Create new entry">+</Link>
         </div>
     </div>)
 }
