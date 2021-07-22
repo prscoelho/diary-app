@@ -5,12 +5,12 @@ import Header from '../components/Header'
 import HeaderButton from '../components/HeaderButton'
 import { ParamTypes } from '../types'
 
-const Write: React.FC = props => {
+const Write: React.FC = () => {
     const { id, date } = useParams<ParamTypes>()
 
     return (
         <div>
-            <Header link={<HeaderButton to={`/day/${date}`} text="╳" />} name="Write" side="right" ></Header>
+            <Header link={<HeaderButton to={`/day/${date}`} text="x" />} name="Write" side="right" ></Header>
             <EntryForm date={date} entry_id={id} />
         </div>
     )

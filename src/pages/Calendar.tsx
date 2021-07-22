@@ -24,7 +24,6 @@ const Calendar: React.FC = () => {
     return (
         <div>
             <Header side="none" name="Calendar" />
-            {/* <div className="text-center text-gray-500 text-1xl py-8 font-semibold">Calendar</div> */}
             <div className="grid grid-cols-7 gap-4 text-2xl font-bold pb-6">
                 <button className="text-indigo-400 text-center w-10 hover:bg-gray-100 rounded" onClick={prevMonth}>&lt;</button>
                 <span className="col-span-5 text-center">{format(month, "LLLL y")}</span>
