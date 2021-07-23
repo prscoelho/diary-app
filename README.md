@@ -1,5 +1,7 @@
 # Diary app
 
+![](assets/showcase.gif)
+
 This project is an example of a typescript react, redux, tailwindcss application, tested with react-testing-library.
 
 Originally I was building this as a food diary for myself, but realized it could be used as a normal diary.
