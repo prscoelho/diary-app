@@ -1,5 +1,7 @@
 # Diary app
 
+[Link to demo](https://divergent-eel.surge.sh/)
+
 ![](assets/showcase.gif)
 
 This project is an example of a typescript react, redux, tailwindcss application, tested with react-testing-library.
